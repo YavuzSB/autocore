@@ -1,0 +1,17 @@
+[package]
+name = "autocore-hal"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+
+[dependencies]
+autocore-base = { path = "../autocore-base" }
+async-trait = { workspace = true }
+tokio = { workspace = true }
+thiserror = { workspace = true }
+tracing = { workspace = true }
+bytemuck = { workspace = true }
+
+[dev-dependencies]
+tokio = { workspace = true, features = ["test-util", "time", "io-util"] }
