@@ -1,0 +1,16 @@
+[package]
+name = "autocore-safety"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+
+[dependencies]
+autocore-base = { path = "../autocore-base" }
+thiserror = { workspace = true }
+tokio = { workspace = true }
+geo = { workspace = true }
+tracing = { workspace = true }
+
+[dev-dependencies]
+tokio = { workspace = true, features = ["test-util", "time"] }
