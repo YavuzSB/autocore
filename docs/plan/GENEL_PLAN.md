@@ -102,22 +102,22 @@ autocore/
 - `VirtualCanBus` ve `CanFrame` desteği.
 - **T1 Kanıtı:** `cargo test -p autocore-hal -p autocore-sitl` → 10/10 test PASSED. (Toplam: 24/24).
 
-### 🔹 Faz 3: Dora-rs Veri Akış Çizgesi & Apache Arrow Sıfır Kopyalama IPC (SIRADAKİ İŞ)
+### 🔹 Faz 3: Dora-rs Veri Akış Çizgesi & Apache Arrow Sıfır Kopyalama IPC (TAMAMLANDI)
 - `autocore-ipc` paketinin açılması.
-- `dora-node-api` entegrasyonu: `DoraNodeWrapper` ve asenkron `EventStream` (`Event::Input`, `Event::Stop`) yaşam döngüsü.
-- `/dev/shm` üzerinde Apache Arrow sabit boyutlu halka tampon havuzları (`Pre-allocated Shared Ring Buffers`).
-- Drop-Old bellek kiralama politikası (yavaş tüketicilerin eski verilerini RAM'de tutmadan anında düşürme).
-- 1200 baytlık GCS telemetri parçalama ve sıfır kopyalama ile yeniden birleştirme (`Reassembly Buffer`).
+- `dora-node-api v1.1.0` entegrasyonu: `DoraNodeWrapper` (`DoraCoordinator` ve `Standalone SITL` modları) ve asenkron `EventStream` (`Event::Input`, `Event::Stop`) yaşam döngüsü.
+- Apache Arrow v59 sabit boyutlu halka havuzu (`SharedRingBufferPool`).
+- Drop-Old bellek kiralama politikası (`DropOldMailbox`, `DropOldLeaseQueue`).
+- 1200 baytlık GCS telemetri parçalama ve sıfır kopyalama ile yeniden birleştirme (`PacketFragmenter`, `PacketReassembler`).
 - `flows/dataflow-sitl.yml` örnek veri akış çizgesi.
-- **T1 — Tamam Tanımı:** `dora` koordinatörü altında başlatılan bir veri akışında üretici düğümün yazdığı Arrow bloğunun tüketici düğüm tarafından kopyalama yapılmadan okunduğu entegrasyon testiyle kanıtlanır.
+- **T1 Kanıtı:** `cargo test -p autocore-ipc` → 9/9 test PASSED.
 
-### 🔹 Faz 4: Alana Özgü Domain Kütüphaneleri (`guidance`, `ground`, `vision`)
-- `autocore-guidance`: 6-DoF Durum Kestirimi, WGS84 $\rightarrow$ NED dönüşümleri, L1/Pure Pursuit, MAVLink v2 köprüsü.
-- `autocore-ground`: Diferansiyel ve Ackerman kinematiği, 2D Local Costmap, Yapay Potansiyel Alanlar (APF) ve DWA.
-- `autocore-vision`: ONNX Runtime soyutlaması, SORT / Kalman Filtresi takipçisi, Dinamik IFF ve Lead-Angle Solver.
-- **T1 — Tamam Tanımı:** `cargo test -p autocore-guidance -p autocore-ground -p autocore-vision` testleri %100 geçer.
+### 🔹 Faz 4: Alana Özgü Domain Kütüphaneleri (TAMAMLANDI)
+- `autocore-guidance`: 6-DoF Durum Kestirimi, WGS84 $\longleftrightarrow$ ECEF $\longleftrightarrow$ NED dönüşümleri, Park et al. L1 adaptif yol takibi, MAVLink v2 köprüsü.
+- `autocore-ground`: Diferansiyel ve Ackerman kinematiği (slip faktörlü), İDA çift itici güç tahsis matrisi, 2D Local Costmap (BFS üstel şişirme), Yapay Potansiyel Alanlar (APF) ve DWA engel kaçınma.
+- `autocore-vision`: `BoundingBox` IoU hesabı, SORT Kalman çoklu hedef takipçisi, Dinamik IFF (`min_samples` eşikli histerezis) ve Lead-Angle Solver (2. derece önleme geometrisi).
+- **T1 Kanıtı:** `cargo test -p autocore-guidance -p autocore-ground -p autocore-vision` → 21/21 test PASSED.
 
-### 🔹 Faz 5: SDK, Takım Başlangıç Şablonları ve Siyah Kutu Teşhis Motoru
+### 🔹 Faz 5: SDK, Takım Başlangıç Şablonları ve Siyah Kutu Teşhis Motoru (SIRADAKİ İŞ)
 - `autocore-sdk`: Rust SDK, C++20 Header-Only C-ABI sarmalayıcısı (`autocore.hpp`), Python `autocore` paketi (`ctypes`/`numpy view` 0 ms).
 - `templates/`: `starter-python`, `starter-cpp`, `starter-rust` şablonları.
 - `blackbox`: Dairesel ikili log tamponu, Foxglove Studio / Rerun uyumlu dışa aktarım.
@@ -137,12 +137,12 @@ autocore/
 - [x] Sanal Seri Port (PTY) loopback iletişimi — `cargo test -p autocore-sitl test_virtual_pty_read_write`
 - [x] Virtual CAN paket aktarımı — `cargo test -p autocore-sitl test_virtual_can_loopback`
 - [x] Mock aktüatör kinematik geri besleme ve atalet modeli — `cargo test -p autocore-sitl test_sitl_bridge_end_to_end`
-- [ ] Apache Arrow `/dev/shm` sıfır kopyalama bellek aktarımı — `cargo test -p autocore-ipc test_arrow_zero_copy`
-- [ ] Drop-Old yavaş tüketici tampon politikası — `cargo test -p autocore-ipc test_drop_old_policy`
-- [ ] MTU 1200 bayt telemetri parçalama ve birleştirme — `cargo test -p autocore-ipc test_telemetry_reassembly`
-- [ ] Diferansiyel sürüş sağ/sol tekerlek kinematik hesabı — `cargo test -p autocore-ground`
-- [ ] WGS84 $\rightarrow$ NED koordinat dönüşüm doğruluğu — `cargo test -p autocore-guidance`
-- [ ] SORT Tracker çoklu nesne eşleme doğruluğu — `cargo test -p autocore-vision`
+- [x] Apache Arrow `/dev/shm` sıfır kopyalama bellek aktarımı — `cargo test -p autocore-ipc test_arrow_kinematic_roundtrip`
+- [x] Drop-Old yavaş tüketici tampon politikası — `cargo test -p autocore-ipc test_mailbox_drop_old`
+- [x] MTU 1200 bayt telemetri parçalama ve birleştirme — `cargo test -p autocore-ipc test_packet_fragmentation_and_reassembly`
+- [x] Diferansiyel sürüş sağ/sol tekerlek kinematik hesabı — `cargo test -p autocore-ground test_diff_drive_roundtrip`
+- [x] WGS84 $\rightarrow$ NED koordinat dönüşüm doğruluğu — `cargo test -p autocore-guidance test_geodetic_to_ned_and_inverse`
+- [x] SORT Tracker çoklu nesne eşleme doğruluğu — `cargo test -p autocore-vision test_tracker_lifecycle_and_confirmation`
 - [ ] Python şablonu ile SITL otonom görev koşusu — `python3 templates/starter-python/mission.py --sitl`
 
 ---

@@ -11,3 +11,6 @@ guncelleme: 2026-10-13
 - **ADR-003 [Linux Native PTY & vcan SITL]:** Gazebo veya Unity gibi ağır 3D simülasyon motorları yerine mikro saniyelik Linux sanal terminali (`libc::openpty` raw mode) ve `vcan` seçildi. Donanım bağımsız masaüstü testi ve CI koşuları sağlandı.
 - **ADR-004 [7-Durumlu Atomik CAS Safety FSM]:** Emniyet durum makinesi kilitlenmelere (`mutex deadlock`) karşı `Arc<AtomicU8>` Compare-And-Swap (CAS) döngüsüyle inşa edildi. Üst katman kilitlense bile bağımsız 500ms Watchdog aracı `SafeLock` moduna çeker.
 - **ADR-005 [Drop-Old Bellek Kiralama Politikası]:** Yavaş çalışan karar/algılama düğümlerinin tamponları şişirip eski karelerle gecikmeli kararlar üretmesini engellemek için `Drop-Old` politikası kabul edildi; daima en taze veri işlenir.
+- **ADR-006 [Domain Modül Ayrımı (guidance, ground, vision)]:** Hava, yüzey, kara ve suüstü ekiplerinin gereksiz bağımlılık (OpenCV, GDAL vb.) yükü taşımaması için domain kütüphaneleri üç ayrı bağımsız crate olarak yapılandırıldı (`crates/autocore-guidance`, `autocore-ground`, `autocore-vision`).
+- **ADR-007 [Deterministik SORT & Kapalı Form Lead-Angle Solver]:** Hedef takibi ve mühimmat/araç önleme geometrisinde belirsiz veya yüksek gecikmeli derin modeller yerine $O(N)$ karmaşıklığında SORT IoU eşleme ve analitik 2. derece kinematik kök çözücü ($a t^2 + b t + c = 0$) standardı kabul edildi.
+

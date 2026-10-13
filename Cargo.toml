@@ -6,6 +6,9 @@ members = [
     "crates/autocore-hal",
     "crates/autocore-sitl",
     "crates/autocore-ipc",
+    "crates/autocore-guidance",
+    "crates/autocore-ground",
+    "crates/autocore-vision",
 ]
 
 [workspace.package]
