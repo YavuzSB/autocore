@@ -36,19 +36,24 @@ impl CentralSafetyFsm {
             return true;
         }
 
-        // SafeLock, Failsafe veya ManualOverride'a her durumdan her an geçilebilir
-        if matches!(to, SafetyMode::SafeLock | SafetyMode::Failsafe | SafetyMode::ManualOverride) {
+        // SafeLock modundayken hiçbir doğrudan geçiş yapılamaz (Sadece reset_safelock ile çıkılabilir)
+        if from == SafetyMode::SafeLock {
+            return false;
+        }
+
+        // SafeLock acil durum kilidine her durumdan anında geçilebilir
+        if to == SafetyMode::SafeLock {
             return true;
         }
 
         match from {
             SafetyMode::Booting => matches!(to, SafetyMode::Disarmed),
-            SafetyMode::Disarmed => matches!(to, SafetyMode::Armed),
-            SafetyMode::Armed => matches!(to, SafetyMode::Disarmed | SafetyMode::Mission),
-            SafetyMode::Mission => matches!(to, SafetyMode::Armed),
-            SafetyMode::Failsafe => matches!(to, SafetyMode::Disarmed),
-            SafetyMode::ManualOverride => matches!(to, SafetyMode::Disarmed | SafetyMode::Armed),
-            SafetyMode::SafeLock => false, // SafeLock'tan sadece açık reset ile çıkılabilir
+            SafetyMode::Disarmed => matches!(to, SafetyMode::Armed | SafetyMode::ManualOverride),
+            SafetyMode::Armed => matches!(to, SafetyMode::Disarmed | SafetyMode::Mission | SafetyMode::Failsafe | SafetyMode::ManualOverride),
+            SafetyMode::Mission => matches!(to, SafetyMode::Armed | SafetyMode::Failsafe | SafetyMode::ManualOverride),
+            SafetyMode::Failsafe => matches!(to, SafetyMode::Disarmed | SafetyMode::ManualOverride),
+            SafetyMode::ManualOverride => matches!(to, SafetyMode::Disarmed | SafetyMode::Armed | SafetyMode::Failsafe),
+            SafetyMode::SafeLock => false,
         }
     }
 

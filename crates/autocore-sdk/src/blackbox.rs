@@ -251,6 +251,58 @@ impl BlackboxReader {
 
         Ok((header, frames))
     }
+
+    /// Kaza veya ani güç kesintisi durumunda dosyanın sonundaki yarım kalmış baytları
+    /// izole ederek sağlam tüm çerçeveleri kurtarır (MIL-STD Uçuş Kaydedici Kurtarma)
+    pub fn load_with_recovery<P: AsRef<Path>>(
+        path: P,
+    ) -> Result<(BlackboxHeader, Vec<BlackboxFrame>, usize), BlackboxError> {
+        let mut file = File::open(path)?;
+        let mut bytes = Vec::new();
+        file.read_to_end(&mut bytes)?;
+        Self::from_bytes_with_recovery(&bytes)
+    }
+
+    pub fn from_bytes_with_recovery(
+        bytes: &[u8],
+    ) -> Result<(BlackboxHeader, Vec<BlackboxFrame>, usize), BlackboxError> {
+        let header_size = std::mem::size_of::<BlackboxHeader>();
+        if bytes.len() < header_size {
+            return Err(BlackboxError::InvalidHeaderSize);
+        }
+
+        let header: BlackboxHeader = *bytemuck::try_from_bytes(&bytes[..header_size])
+            .map_err(|_| BlackboxError::InvalidHeaderSize)?;
+
+        if header.magic != BLACKBOX_MAGIC {
+            return Err(BlackboxError::InvalidMagic);
+        }
+
+        if header.version != BLACKBOX_VERSION {
+            return Err(BlackboxError::UnsupportedVersion(header.version));
+        }
+
+        let frame_size = std::mem::size_of::<BlackboxFrame>();
+        let frame_bytes = &bytes[header_size..];
+
+        let num_complete_frames = frame_bytes.len() / frame_size;
+        let discarded_bytes = frame_bytes.len() % frame_size;
+
+        let mut frames = Vec::with_capacity(num_complete_frames);
+
+        for i in 0..num_complete_frames {
+            let chunk = &frame_bytes[i * frame_size..(i + 1) * frame_size];
+            let frame: BlackboxFrame = *bytemuck::try_from_bytes(chunk)
+                .map_err(|_| BlackboxError::MismatchedFrameSize(frame_size as u32, chunk.len()))?;
+
+            if !frame.verify_crc() {
+                return Err(BlackboxError::CrcMismatch(i, frame.crc16, crc16_ccitt(&chunk[..176])));
+            }
+            frames.push(frame);
+        }
+
+        Ok((header, frames, discarded_bytes))
+    }
 }
 
 #[cfg(test)]

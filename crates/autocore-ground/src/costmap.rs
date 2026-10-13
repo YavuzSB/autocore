@@ -31,6 +31,9 @@ impl LocalCostmap2D {
     }
 
     pub fn metric_to_grid(&self, x_m: f64, y_m: f64) -> Option<(usize, usize)> {
+        if !x_m.is_finite() || !y_m.is_finite() {
+            return None;
+        }
         let gx = ((x_m - self.origin_x_m) / self.resolution_m).floor() as isize;
         let gy = ((y_m - self.origin_y_m) / self.resolution_m).floor() as isize;
 

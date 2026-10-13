@@ -61,17 +61,25 @@ impl SlewRateLimiter {
         // Doğrusal bileşenleri sınırla: dv_max = a_max * dt
         let max_dv = self.max_linear_accel * dt_s;
         for i in 0..3 {
-            let diff = target.linear[i] - prev.linear[i];
-            let clamped_diff = diff.clamp(-max_dv, max_dv);
-            target.linear[i] = prev.linear[i] + clamped_diff;
+            if !target.linear[i].is_finite() {
+                target.linear[i] = prev.linear[i];
+            } else {
+                let diff = target.linear[i] - prev.linear[i];
+                let clamped_diff = diff.clamp(-max_dv, max_dv);
+                target.linear[i] = prev.linear[i] + clamped_diff;
+            }
         }
 
         // Açısal bileşenleri sınırla: dw_max = alpha_max * dt
         let max_dw = self.max_angular_accel * dt_s;
         for i in 0..3 {
-            let diff = target.angular[i] - prev.angular[i];
-            let clamped_diff = diff.clamp(-max_dw, max_dw);
-            target.angular[i] = prev.angular[i] + clamped_diff;
+            if !target.angular[i].is_finite() {
+                target.angular[i] = prev.angular[i];
+            } else {
+                let diff = target.angular[i] - prev.angular[i];
+                let clamped_diff = diff.clamp(-max_dw, max_dw);
+                target.angular[i] = prev.angular[i] + clamped_diff;
+            }
         }
 
         target.timestamp_us = now_us;

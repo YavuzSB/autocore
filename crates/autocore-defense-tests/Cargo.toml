@@ -1,0 +1,24 @@
+[package]
+name = "autocore-defense-tests"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "Savunma Sanayii Standartlarında (MIL-STD-882E, DO-178C, STANAG) Doğrulama ve Dayanıklılık Test Paketi"
+
+[dependencies]
+autocore-base = { path = "../autocore-base" }
+autocore-safety = { path = "../autocore-safety" }
+autocore-hal = { path = "../autocore-hal" }
+autocore-sitl = { path = "../autocore-sitl" }
+autocore-ipc = { path = "../autocore-ipc" }
+autocore-guidance = { path = "../autocore-guidance" }
+autocore-ground = { path = "../autocore-ground" }
+autocore-vision = { path = "../autocore-vision" }
+autocore-sdk = { path = "../autocore-sdk" }
+
+tokio = { workspace = true, features = ["full", "test-util", "time"] }
+geo = { workspace = true }
+bytemuck = { workspace = true }
+tempfile = "3.17"

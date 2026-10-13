@@ -57,9 +57,12 @@ impl ClampingEngine {
     pub fn clamp_command(&self, cmd: &mut KinematicCommand) -> bool {
         let mut clamped = false;
 
-        // Doğrusal hız bileşenlerini kırp
+        // Doğrusal hız bileşenlerini kırp ve NaN/Inf zehirlenmesine karşı koru
         for val in &mut cmd.linear {
-            if *val > self.max_linear_speed {
+            if !val.is_finite() {
+                *val = 0.0;
+                clamped = true;
+            } else if *val > self.max_linear_speed {
                 *val = self.max_linear_speed;
                 clamped = true;
             } else if *val < -self.max_linear_speed {
@@ -68,9 +71,12 @@ impl ClampingEngine {
             }
         }
 
-        // Açısal hız bileşenlerini kırp
+        // Açısal hız bileşenlerini kırp ve NaN/Inf zehirlenmesine karşı koru
         for val in &mut cmd.angular {
-            if *val > self.max_angular_speed {
+            if !val.is_finite() {
+                *val = 0.0;
+                clamped = true;
+            } else if *val > self.max_angular_speed {
                 *val = self.max_angular_speed;
                 clamped = true;
             } else if *val < -self.max_angular_speed {

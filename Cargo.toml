@@ -10,6 +10,7 @@ members = [
     "crates/autocore-ground",
     "crates/autocore-vision",
     "crates/autocore-sdk",
+    "crates/autocore-defense-tests",
     "templates/starter-rust",
 ]
 
