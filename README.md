@@ -12,6 +12,10 @@
 [![License](https://img.shields.io/badge/license-MIT%20%2F%20Apache--2.0-lightgrey.svg?style=flat-square)](LICENSE)
 
 <p align="center">
+  <b>English</b> • <a href="README.tr.md">Türkçe</a>
+</p>
+
+<p align="center">
   <a href="#-overview">Overview</a> •
   <a href="#-system-architecture">Architecture</a> •
   <a href="#-defense-standards--safety-matrix">Defense Standards</a> •
@@ -19,7 +23,7 @@
   <a href="#-crates--modular-breakdown">Crates</a> •
   <a href="#-multi-language-sdk">SDKs</a> •
   <a href="#-flight-data-recorder-blackbox">Blackbox</a> •
-  <a href="#-tr-özet">TR Özet</a>
+  <a href="README.tr.md">🇹🇷 Türkçe Dokümantasyon</a>
 </p>
 
 ---
