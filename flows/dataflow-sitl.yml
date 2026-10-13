@@ -1,0 +1,32 @@
+# Autocore SITL Dora-rs Veri Akış Çizgesi (Dataflow Graph)
+# Dora Koordinatörü altında çalışan uçtan uca otonom çevrim
+
+nodes:
+  # 1. Görev / Güdüm Düğümü (Mission / Guidance Controller)
+  - id: mission_controller
+    custom:
+      source: target/debug/mission_node
+      inputs:
+        telemetry: actuator_bridge/telemetry
+      outputs:
+        - cmd_vel
+
+  # 2. Emniyet Sentineli & FSM (Safety Core)
+  - id: safety_sentinel
+    custom:
+      source: target/debug/safety_node
+      inputs:
+        raw_cmd: mission_controller/cmd_vel
+        feedback: actuator_bridge/telemetry
+      outputs:
+        - safe_cmd
+        - safety_status
+
+  # 3. Donanım / SITL Simülasyon Köprüsü (Actuator / PTY Bridge)
+  - id: actuator_bridge
+    custom:
+      source: target/debug/actuator_bridge_node
+      inputs:
+        actuator_in: safety_sentinel/safe_cmd
+      outputs:
+        - telemetry
