@@ -117,12 +117,12 @@ autocore/
 - `autocore-vision`: `BoundingBox` IoU hesabı, SORT Kalman çoklu hedef takipçisi, Dinamik IFF (`min_samples` eşikli histerezis) ve Lead-Angle Solver (2. derece önleme geometrisi).
 - **T1 Kanıtı:** `cargo test -p autocore-guidance -p autocore-ground -p autocore-vision` → 21/21 test PASSED.
 
-### 🔹 Faz 5: SDK, Takım Başlangıç Şablonları ve Siyah Kutu Teşhis Motoru (SIRADAKİ İŞ)
-- `autocore-sdk`: Rust SDK, C++20 Header-Only C-ABI sarmalayıcısı (`autocore.hpp`), Python `autocore` paketi (`ctypes`/`numpy view` 0 ms).
+### 🔹 Faz 5: SDK, Takım Başlangıç Şablonları ve Siyah Kutu Teşhis Motoru (TAMAMLANDI)
+- `autocore-sdk`: Rust SDK (`AutocoreClient`), C++20 Header-Only C-ABI sarmalayıcısı (`autocore.hpp`), Python `autocore` paketi (`ctypes`/`numpy view` 0 ms).
 - `templates/`: `starter-python`, `starter-cpp`, `starter-rust` şablonları.
-- `blackbox`: Dairesel ikili log tamponu, Foxglove Studio / Rerun uyumlu dışa aktarım.
-- Linux systemd servis tanımı ve `SCHED_FIFO` gerçek zamanlı önceliklendirme rehberi.
-- **T1 — Tamam Tanımı:** Python şablonunun SITL ortamında başlatılıp sanal seri port üzerinden otonom görev çevrimini tamamladığı uçtan uca senaryo başarıyla icra edilir.
+- `blackbox`: Dairesel ikili log tamponu (184B `BlackboxFrame`, 40B `BlackboxHeader`, CRC-16 korumalı), CSV ve JSON dışa aktarımı.
+- Linux systemd servis tanımı (`deploy/autocore.service`) ve `SCHED_FIFO` gerçek zamanlı önceliklendirme rehberi (`deploy/deploy-guide.md`).
+- **T1 Kanıtı:** `python3 templates/starter-python/mission.py --sitl` ile 5 yol noktası uçtan uca simüle edildi (815 adım, 16.99s, %100 başarı). `cargo run -p starter-rust` ile 100 adımlık görev ve siyah kutu mühürlendi.
 
 ---
 
@@ -143,7 +143,7 @@ autocore/
 - [x] Diferansiyel sürüş sağ/sol tekerlek kinematik hesabı — `cargo test -p autocore-ground test_diff_drive_roundtrip`
 - [x] WGS84 $\rightarrow$ NED koordinat dönüşüm doğruluğu — `cargo test -p autocore-guidance test_geodetic_to_ned_and_inverse`
 - [x] SORT Tracker çoklu nesne eşleme doğruluğu — `cargo test -p autocore-vision test_tracker_lifecycle_and_confirmation`
-- [ ] Python şablonu ile SITL otonom görev koşusu — `python3 templates/starter-python/mission.py --sitl`
+- [x] Python şablonu ile SITL otonom görev koşusu — `python3 templates/starter-python/mission.py --sitl`
 
 ---
 *Kaynak: `/home/yavuz/SecondBrain/docs/ARCHITECTURE-AUTOCORE.md`, `AGENTS.md` §7 & §8*

@@ -1,0 +1,42 @@
+[Unit]
+Description=Autocore Autonomous Robotics Runtime & Safety Daemon
+Documentation=https://github.com/sancak/autocore
+After=network.target local-fs.target
+Wants=network.target
+
+[Service]
+Type=simple
+User=root
+Group=root
+WorkingDirectory=/opt/autocore
+
+# Ortam Değişkenleri ve /dev/shm Sıfır Kopyalama Ön Hazırlığı
+Environment=DORA_COORDINATOR_ADDR=127.0.0.1:20012
+Environment=AUTOCORE_CONFIG=/etc/autocore/autocore.toml
+Environment=RUST_LOG=info,autocore_safety=debug
+
+ExecStartPre=/usr/bin/mkdir -p /dev/shm/autocore
+ExecStartPre=/usr/bin/chmod 777 /dev/shm/autocore
+ExecStart=/usr/local/bin/autocore-daemon --config /etc/autocore/autocore.toml
+
+# ==============================================================================
+# Gerçek Zamanlı Önceliklendirme ve Kaynak Kilitleri (Real-Time SCHED_FIFO)
+# ==============================================================================
+CPUSchedulingPolicy=fifo
+CPUSchedulingPriority=99
+Nice=-20
+LimitRTPRIO=infinity
+LimitMEMLOCK=infinity
+
+# Çekirdek Kilitleme (CPU Core Pinning):
+# Çekirdek 0: OS / Ağ / Kamera, Çekirdek 1: AI Çıkarım, Çekirdek 2-3: Emniyet & HAL
+CPUAffinity=2,3
+
+# Hata Durumunda Otomatik Kurtarma
+Restart=always
+RestartSec=2
+KillMode=mixed
+TimeoutStopSec=5
+
+[Install]
+WantedBy=multi-user.target

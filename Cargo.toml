@@ -9,6 +9,8 @@ members = [
     "crates/autocore-guidance",
     "crates/autocore-ground",
     "crates/autocore-vision",
+    "crates/autocore-sdk",
+    "templates/starter-rust",
 ]
 
 [workspace.package]

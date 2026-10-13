@@ -1,0 +1,23 @@
+# Dora-rs Dataflow for Python Mission Node
+nodes:
+  - id: mission_controller
+    custom:
+      source: mission.py
+      inputs:
+        telemetry: safety_sentinel/feedback
+      outputs:
+        command:
+          queue_size: 10
+          drop_old: true
+
+  - id: safety_sentinel
+    custom:
+      source: autocore-safety-daemon
+      inputs:
+        command: mission_controller/command
+      outputs:
+        actuator_cmd:
+          queue_size: 5
+          drop_old: true
+        feedback:
+          queue_size: 10

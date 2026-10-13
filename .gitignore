@@ -3,3 +3,8 @@ Cargo.lock
 **/*.rs.bk
 *.swp
 *.log
+__pycache__/
+*.pyc
+*.bbox
+templates/starter-cpp/mission
+templates/starter-cpp/build/

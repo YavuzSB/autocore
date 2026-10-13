@@ -1,0 +1,11 @@
+[package]
+name = "starter-rust"
+version = "0.1.0"
+edition = "2021"
+authors = ["SANCAK Autonomous Systems Team"]
+
+[dependencies]
+autocore-sdk = { path = "../../crates/autocore-sdk" }
+tokio = { version = "1.43", features = ["full"] }
+tracing = "0.1"
+tracing-subscriber = "0.3"

@@ -1,0 +1,29 @@
+[package]
+name = "autocore-sdk"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "High-level client SDK, Blackbox recorder, and multi-language bindings for Autocore"
+
+[dependencies]
+autocore-base = { path = "../autocore-base" }
+autocore-safety = { path = "../autocore-safety" }
+autocore-hal = { path = "../autocore-hal" }
+autocore-sitl = { path = "../autocore-sitl" }
+autocore-ipc = { path = "../autocore-ipc" }
+autocore-guidance = { path = "../autocore-guidance" }
+autocore-ground = { path = "../autocore-ground" }
+autocore-vision = { path = "../autocore-vision" }
+
+tokio = { workspace = true }
+thiserror = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+tracing = { workspace = true }
+bytemuck = { workspace = true }
+static_assertions = { workspace = true }
+
+[dev-dependencies]
+tempfile = "3.17"
