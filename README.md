@@ -9,10 +9,11 @@
 [![Safety Standards](https://img.shields.io/badge/standards-MIL--STD--882E_%7C_DO--178C_%7C_STANAG_4586-blue.svg?style=flat-square)](docs/reports/SAVUNMA_SANAYII_TEST_RAPORU.md)
 [![IPC](https://img.shields.io/badge/IPC-Apache_Arrow_v59_%7C_Dora--rs_v1.1-purple.svg?style=flat-square)](crates/autocore-ipc)
 [![Real-Time](https://img.shields.io/badge/realtime-SCHED__FIFO_99-red.svg?style=flat-square)](deploy/autocore.service)
-[![License](https://img.shields.io/badge/license-MIT%20%2F%20Apache--2.0-lightgrey.svg?style=flat-square)](LICENSE)
+[![License](https://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat-square)](LICENSE)
+[![Security Policy](https://img.shields.io/badge/security-policy-green.svg?style=flat-square)](SECURITY.md)
 
 <p align="center">
-  <b>English</b> • <a href="README.tr.md">Türkçe</a>
+  <a href="README.md">English</a> | <a href="README.tr.md">Türkçe</a>
 </p>
 
 <p align="center">
