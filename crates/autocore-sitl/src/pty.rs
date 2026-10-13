@@ -117,7 +117,7 @@ mod tests {
         let mut master = pty.master_tokio_file().unwrap();
         let mut slave = pty.open_slave_tokio().unwrap();
 
-        let msg = b"SANCAK_SITL_PTY_PING\n";
+        let msg = b"AUTOCORE_SITL_PTY_PING\n";
         master.write_all(msg).await.unwrap();
         master.flush().await.unwrap();
 

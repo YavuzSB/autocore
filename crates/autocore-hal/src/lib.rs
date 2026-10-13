@@ -1,6 +1,6 @@
 //! # autocore-hal
 //!
-//! SANCAK Otonom Sistem Mimarisi Donanım Soyutlama Katmanı (HAL).
+//! AutoCore Otonom Sistem Mimarisi Donanım Soyutlama Katmanı (HAL).
 //! ActuatorPort trait'i, ikili protokol çerçeveleme, CRC-16,
 //! seri akış sürücüleri, CAN Bus paketleme ve GPIO emniyet pinleri.
 

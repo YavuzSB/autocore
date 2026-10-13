@@ -7,7 +7,7 @@
 
 ## 1. Proje Amacı ve Felsefesi
 
-**Autocore** — SANCAK otonom robotik ekosistemi ve savunma sanayii yarışma ekipleri (HSS, İKA, İDA, İHA, Robotik) için geliştirilen endüstriyel standartta, sıfır-kopyalama (`Zero-Copy`) ve emniyet odaklı işletim çekirdeğidir.
+**Autocore** — Otonom robotik ekosistemi ve savunma sanayii yarışma ekipleri (HSS, İKA, İDA, İHA, Robotik) için geliştirilen endüstriyel standartta, sıfır-kopyalama (`Zero-Copy`) ve emniyet odaklı işletim çekirdeğidir.
 - **Sıfır Kopyalama:** Apache Arrow ve `/dev/shm` üzerinden mikrosaniyelik veri aktarımı. Python tarafında `numpy.ndarray` referansı (`view`) ile **0 ms** gecikme.
 - **Fail-Safe Emniyet:** 7 Durumlu Central Safety FSM, 500 ms Sentinel Watchdog zaman aşımı, Geofence Clamping, Slew-Rate Limiter ve Hayalet Hareket Koruması (`Phantom Movement Fix`).
 - **Day-1 SITL:** Fiziksel robot olmadan masaüstünde Linux Sanal Terminali (`PTY`), sanal CAN (`vcan`) ve atalet modelli `MockActuator` ile %100 uçtan uca simülasyon.

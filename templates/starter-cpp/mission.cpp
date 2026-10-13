@@ -1,6 +1,6 @@
 /**
  * Autocore C++20 Başlangıç Görev Şablonu (Starter C++ Mission Node)
- * Sancak Otonom Sistemler (HSS, İKA, İDA, İHA) C++20 Düğümü
+ * AutoCore Otonom Sistemler (HSS, İKA, İDA, İHA) C++20 Düğümü
  */
 
 #include "autocore.hpp"
@@ -20,7 +20,7 @@ int main(int argc, char* argv[]) {
     }
 
     std::cout << "============================================================" << std::endl;
-    std::cout << "🚀 SANCAK AUTOCORE C++20 OTONOM GÖREV DÜĞÜMÜ" << std::endl;
+    std::cout << "🚀 AUTOCORE C++20 OTONOM GÖREV DÜĞÜMÜ" << std::endl;
     std::cout << "============================================================" << std::endl;
     std::cout << "[CPP-MISSION] Port açılıyor: " << port_path << std::endl;
 

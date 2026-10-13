@@ -1,6 +1,6 @@
 //! # autocore-safety
 //!
-//! SANCAK Otonom Sistem Mimarisi için Emniyet Sentineli, 7-Durumlu FSM,
+//! AutoCore Otonom Sistem Mimarisi için Emniyet Sentineli, 7-Durumlu FSM,
 //! 500ms Watchdog, Dinamik Geofence Clamping, Slew-Rate Limiter ve
 //! Hayalet Hareket Koruması (Phantom Movement Fix).
 

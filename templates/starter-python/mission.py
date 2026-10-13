@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Autocore Python Başlangıç Görev Şablonu (Starter Python Mission Node)
-Sancak Otonom Sistemler (HSS, İKA, İDA, İHA) Takım Görev Şablonu
+AutoCore Otonom Sistemler (HSS, İKA, İDA, İHA) Takım Görev Şablonu
 
 Kullanım:
   python3 mission.py --sitl
@@ -74,7 +74,7 @@ def main():
         sys.exit(1)
 
     print("=" * 60)
-    print("🚀 SANCAK AUTOCORE OTONOM GÖREV KONTROLCÜSÜ BAŞLATILDI")
+    print("🚀 AUTOCORE OTONOM GÖREV KONTROLCÜSÜ BAŞLATILDI")
     print("=" * 60)
 
     try:

@@ -3,7 +3,7 @@
 /**
  * Autocore C++20 Header-Only C-ABI Wrapper
  * 
- * Sancak Autocore Autonomous Robotics Runtime & Safety Kernel
+ * AutoCore Autonomous Robotics Runtime & Safety Kernel
  * Zero-Copy binary layout and C-ABI compatibility layer for C++20 nodes.
  */
 

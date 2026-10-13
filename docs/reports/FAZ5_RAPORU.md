@@ -80,7 +80,7 @@
 [MISSION] SITL Daemon başlatılıyor: /home/yavuz/Belgeler/autocore/target/debug/autocore-sitl
 [MISSION] SITL Sanal Seri Port Hazır: /dev/pts/2
 ============================================================
-🚀 SANCAK AUTOCORE OTONOM GÖREV KONTROLCÜSÜ BAŞLATILDI
+🚀 AUTOCORE OTONOM GÖREV KONTROLCÜSÜ BAŞLATILDI
 ============================================================
 [MISSION] Port bağlantısı kuruldu.
 [MISSION] Emniyet Modu: ARMED

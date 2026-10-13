@@ -4,7 +4,7 @@ use crate::error::IpcError;
 
 pub const DEFAULT_MAX_FRAGMENT_SIZE: usize = 1200;
 pub const FRAGMENT_HEADER_SIZE: usize = 12;
-pub const FRAGMENT_MAGIC: u16 = 0x5343; // 'S' 'C' (Sancak Core)
+pub const FRAGMENT_MAGIC: u16 = 0x5343; // 'S' 'C' (Sync / Shared Core)
 
 /// CRC-16-CCITT hesaplama (Polinom: 0x1021)
 pub fn crc16_ccitt(data: &[u8]) -> u16 {

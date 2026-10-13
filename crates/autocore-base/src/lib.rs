@@ -1,6 +1,6 @@
 //! # autocore-base
 //!
-//! SANCAK Otonom Sistem Mimarisi için temel C-ABI uyumlu veri modelleri,
+//! AutoCore Otonom Sistem Mimarisi için temel C-ABI uyumlu veri modelleri,
 //! zaman damgaları, ortak hata tipleri ve sıfır-kopyalama yapıları.
 
 pub mod abi;

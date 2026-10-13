@@ -1,6 +1,6 @@
 //! # autocore-sitl
 //!
-//! SANCAK Otonom Sistem Mimarisi için Masaüstü SITL (Software-in-the-Loop)
+//! AutoCore Otonom Sistem Mimarisi için Masaüstü SITL (Software-in-the-Loop)
 //! Simülasyon Tezgâhı. Sanal PTY terminalleri (`/dev/pts/*`), fiziksel
 //! atalet modelli Mock Aktüatör ve sanal CAN veri yolları.
 

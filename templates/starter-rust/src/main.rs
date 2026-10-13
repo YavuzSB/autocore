@@ -1,6 +1,6 @@
 //! Autocore Rust Başlangıç Görev Düğümü (Starter Rust Mission Node)
 //!
-//! SANCAK Otonom Sistemler (HSS, İKA, İDA, İHA) Rust Görev Şablonu.
+//! AutoCore Otonom Sistemler (HSS, İKA, İDA, İHA) Rust Görev Şablonu.
 //! `autocore-sdk` üzerinden SITL simülasyonuna bağlanır ve 50 Hz otonom kontrol döngüsü icra eder.
 
 use autocore_sdk::{AutocoreClient, SafetyMode};
@@ -10,7 +10,7 @@ use tokio::time::sleep;
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
     println!("============================================================");
-    println!("🚀 SANCAK AUTOCORE RUST OTONOM GÖREV DÜĞÜMÜ");
+    println!("🚀 AUTOCORE RUST OTONOM GÖREV DÜĞÜMÜ");
     println!("============================================================");
 
     // 1. Masaüstü SITL ortamına bağlan

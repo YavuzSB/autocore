@@ -17,9 +17,9 @@ members = [
 [workspace.package]
 version = "0.1.0"
 edition = "2021"
-authors = ["SANCAK Autonomous Systems Team"]
+authors = ["AutoCore Systems Team"]
 license = "MIT OR Apache-2.0"
-repository = "https://github.com/sancak/autocore"
+repository = "https://github.com/YavuzSB/autocore"
 
 [workspace.dependencies]
 thiserror = "2.0"

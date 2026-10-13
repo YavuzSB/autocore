@@ -9,7 +9,7 @@
 
 ## 1. Goal (Hedef)
 
-SANCAK bünyesindeki ve savunma sanayii / Teknofest yarışma ekiplerindeki (HSS, İKA, İDA, İHA, Robotik) tüm alt takımların tekeri yeniden icat etmeden kullanabileceği; Unix felsefesiyle izole, Apache Arrow ile sıfır kopyalama (`Zero-Copy`), bağımsız donanımsal/yazılımsal emniyet bekçili (`Sentinel Watchdog`) ve donanım bağımsız masaüstü simülasyonlu (`SITL`) endüstriyel standartta bir robotik işletim çekirdeği kurmak.
+Savunma sanayii ve otonom sistem ekiplerindeki (HSS, İKA, İDA, İHA, Robotik) tüm alt takımların tekeri yeniden icat etmeden kullanabileceği; Unix felsefesiyle izole, Apache Arrow ile sıfır kopyalama (`Zero-Copy`), bağımsız donanımsal/yazılımsal emniyet bekçili (`Sentinel Watchdog`) ve donanım bağımsız masaüstü simülasyonlu (`SITL`) endüstriyel standartta bir robotik işletim çekirdeği kurmak.
 
 ---
 

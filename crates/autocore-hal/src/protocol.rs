@@ -114,7 +114,7 @@ mod tests {
 
     #[test]
     fn test_packet_encode_decode_roundtrip() {
-        let payload = b"SANCAK_ROBOTIK_TEST_PAYLOAD";
+        let payload = b"AUTOCORE_ROBOTIK_TEST_PAYLOAD";
         let encoded = encode_packet(MSG_TYPE_CMD_VEL, payload);
 
         let decoded = decode_packet(&encoded).unwrap();

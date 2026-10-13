@@ -1,7 +1,7 @@
 # SAVUNMA SANAYİİ DOĞRULAMA VE TEST RAPORU (MIL-STD-882E, DO-178C, STANAG 4586)
 
 **Tarih:** 2026-10-13  
-**Proje:** AutoCore — SANCAK Savunma Platformları Otonom Çekirdeği (HSS, İKA, İDA, İHA)  
+**Proje:** AutoCore — Otonom Savunma Platformları Çekirdeği (HSS, İKA, İDA, İHA)  
 **Test Paketi:** `crates/autocore-defense-tests`  
 **Sonuç:** 16/16 Savunma Testi BAŞARILI | 70/70 Çalışma Alanı Testi BAŞARILI  
 **Derleme Durumu:** `cargo check --workspace --all-targets` (0 hata, 0 uyarı)

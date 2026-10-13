@@ -1,6 +1,6 @@
 """
 Autocore Python İstemci Paketi
-Sancak Autocore Autonomous Robotics Runtime & Safety Kernel
+AutoCore Autonomous Robotics Runtime & Safety Kernel
 """
 
 from .structs import (

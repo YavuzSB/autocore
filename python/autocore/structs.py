@@ -1,6 +1,6 @@
 """
 Autocore Python C-ABI Structs & Types
-Sancak Autocore Autonomous Robotics Runtime & Safety Kernel
+AutoCore Autonomous Robotics Runtime & Safety Kernel
 
 Exact binary layout matching Rust #[repr(C)] structs.
 """

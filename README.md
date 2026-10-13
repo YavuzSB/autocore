@@ -240,7 +240,7 @@ Refer to [`deploy/deploy-guide.md`](deploy/deploy-guide.md) for PREEMPT_RT kerne
 
 ## 🇹🇷 Türkçe Özet (Turkish Summary)
 
-**AutoCore**, SANCAK savunma platformları (HSS, İKA, İDA, İHA) ve otonom sistem yarışma takımları için geliştirilmiş yüksek başarımlı bir **Robotik Çalışma Zamanı ve Emniyet Çekirdeğidir**.
+**AutoCore**, otonom savunma platformları (HSS, İKA, İDA, İHA) ve robotik sistemleri için geliştirilmiş yüksek başarımlı bir **Robotik Çalışma Zamanı ve Emniyet Çekirdeğidir**.
 
 - **Sıfır Kopyalama IPC:** Apache Arrow v59 ve Dora-rs ile `/dev/shm` üzerinden mikrosaniyelik veri aktarımı; Python tarafında `numpy view` ile sıfır kopyalama (0 ms gecikme).
 - **Askeri Emniyet Çekirdeği:** 7-Durumlu Atomic CAS Safety FSM, 500 ms bağımsız donanımsal Sentinel Watchdog, IEEE 754 NaN koruması, Geofence Clamping ve Hayalet Hareket Önleyici Lock-Free Queue Flush.

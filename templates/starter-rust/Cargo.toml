@@ -2,7 +2,7 @@
 name = "starter-rust"
 version = "0.1.0"
 edition = "2021"
-authors = ["SANCAK Autonomous Systems Team"]
+authors = ["AutoCore Systems Team"]
 
 [dependencies]
 autocore-sdk = { path = "../../crates/autocore-sdk" }
