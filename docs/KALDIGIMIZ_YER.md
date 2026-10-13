@@ -1,12 +1,12 @@
 # 📍 KALDIĞIMIZ YER — Autocore Anlık Durum
 
-**Son Güncelleme:** 13.10.2026 — **Faz 0..5 + Savunma Sanayii Test Paketi (%100 TAMAMLANDI VE YEŞİL)**  
-**Durum:** Autocore Autonomous Robotics Runtime & Safety Kernel tüm fazlarıyla ve **MIL-STD-882E, DO-178C, STANAG 4586 savunma sanayii test paketiyle** (`autocore-defense-tests`) **doğrulandı, mühürlendi ve üretime hazır**.  
-**Sıradaki İş:** **Sistem Savunma Sanayii Standartlarında Tamamlandı (Production Ready)** — İsteğe bağlı olarak platforma özel donanım kartı (Jetson Orin, BeagleBone, Raspberry Pi CM4) ve saha telemetrisi entegrasyonu.  
-**Aktif Plan:** `docs/plan/GENEL_PLAN.md` & `docs/reports/SAVUNMA_SANAYII_TEST_RAPORU.md`.  
+**Son Güncelleme:** 13.10.2026 — **Taban Çekirdek (Faz 0..5 + Savunma Testleri) Tamamlandı • 7 Üst Domain Çekirdeği Mimarisi Mühürlendi**  
+**Durum:** Autocore Taban Emniyet & IPC Çekirdeği 70/70 test ile üretime hazır. Üzerine inşa edilecek **7 Alana Özgü Üst Çekirdek (autocore-transform, vision, pointing, ground, aerial, marine, arbiter)** mimarisi ve Lego blok sözleşmeleri hem genel planda (`docs/plan/UST_CEKIRDEK_MIMARISI.md`) hem de her modülün kendi `docs/MIMARI.md` dosyasında mühürlendi.  
+**Sıradaki İş:** Üst Çekirdek İskeletlerinin ve Kod Uygulamalarının Başlatılması (Sırasıyla: `transform`, `arbiter`, `pointing`, `ground`, `aerial`, `marine`).  
+**Aktif Plan:** `docs/plan/UST_CEKIRDEK_MIMARISI.md` & `docs/plan/GENEL_PLAN.md`.  
 **Test Kanıtı:** `cargo test --workspace` → **70/70 test PASSED** (16 Savunma Testi + 54 Çekirdek Testi, %100 başarı, 0 hata, 0 uyarı).  
 **SITL Kanıtı:** `python3 templates/starter-python/mission.py --sitl` ile 5 yol noktası uçtan uca simüle edildi (815 adım, 16.99s, %100 başarı).  
-**Git Durumu:** Savunma sanayii test paketi ve emniyet sıkılaştırmaları kodlandı, testleri yeşil.
+**Git Durumu:** Üst çekirdek mimari şartnameleri mühürlendi (commit `cdcff7f`).
 
 ---
 
