@@ -1,0 +1,19 @@
+[package]
+name = "autocore-aerial"
+version = "0.1.0"
+edition = "2021"
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "AutoCore Flight Dynamics, MAVLink v2 Autopilot Bridge, L1 Nonlinear Guidance and 3D Envelope Guard"
+
+[dependencies]
+autocore-base = { path = "../autocore-base" }
+autocore-transform = { path = "../autocore-transform" }
+serde = { workspace = true }
+thiserror = { workspace = true }
+bytemuck = { workspace = true }
+static_assertions = { workspace = true }
+
+[dev-dependencies]
+tokio = { workspace = true }

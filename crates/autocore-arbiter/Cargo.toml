@@ -1,0 +1,18 @@
+[package]
+name = "autocore-arbiter"
+version = "0.1.0"
+edition = "2021"
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "AutoCore 3-Tier Command Arbiter, Priority Hierarchy and Conflict Resolver"
+
+[dependencies]
+autocore-base = { path = "../autocore-base" }
+serde = { workspace = true }
+thiserror = { workspace = true }
+bytemuck = { workspace = true }
+static_assertions = { workspace = true }
+
+[dev-dependencies]
+tokio = { workspace = true }

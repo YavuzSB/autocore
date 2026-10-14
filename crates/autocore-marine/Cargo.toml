@@ -1,0 +1,19 @@
+[package]
+name = "autocore-marine"
+version = "0.1.0"
+edition = "2021"
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "AutoCore Hydrodynamic Navigation, Thruster Allocation and Drift Compensation Kernel"
+
+[dependencies]
+autocore-base = { path = "../autocore-base" }
+autocore-transform = { path = "../autocore-transform" }
+serde = { workspace = true }
+thiserror = { workspace = true }
+bytemuck = { workspace = true }
+static_assertions = { workspace = true }
+
+[dev-dependencies]
+tokio = { workspace = true }

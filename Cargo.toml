@@ -11,6 +11,11 @@ members = [
     "crates/autocore-vision",
     "crates/autocore-sdk",
     "crates/autocore-defense-tests",
+    "crates/autocore-transform",
+    "crates/autocore-arbiter",
+    "crates/autocore-pointing",
+    "crates/autocore-aerial",
+    "crates/autocore-marine",
     "templates/starter-rust",
 ]
 

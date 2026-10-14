@@ -108,10 +108,14 @@ impl SortTracker {
             }
         }
 
-        // 4. Güncellenmeyen eski takipleri düşür (Drop Dead Tracks)
+        // 4. Güncellenmeyen eski takipleri düşür veya Coasting (Lost) durumuna al
         for (t_idx, track) in self.tracks.iter_mut().enumerate() {
-            if !matched_tracks.get(t_idx).copied().unwrap_or(false) && track.time_since_update > self.max_age {
-                track.state = TrackState::Deleted;
+            if !matched_tracks.get(t_idx).copied().unwrap_or(false) {
+                if track.time_since_update > self.max_age {
+                    track.state = TrackState::Deleted;
+                } else if track.state == TrackState::Confirmed {
+                    track.state = TrackState::Lost; // Coasting (Kör Uçuş)
+                }
             }
         }
 

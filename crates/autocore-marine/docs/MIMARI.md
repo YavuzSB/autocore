@@ -74,8 +74,8 @@
     ```rust
     #[repr(C)]
     pub struct ThrusterSignals {
-        pub port_pct: f32,      // İskele motor (-1.0 .. +1.0)
-        pub starboard_pct: f32, // Sancak motor (-1.0 .. +1.0)
+        pub port_pct: f32,      // İskele / Sol motor (-1.0 .. +1.0)
+        pub starboard_pct: f32, // Sağ motor (-1.0 .. +1.0)
         pub rudder_angle_rad: f32, // Varsa dümen açısı
         pub reserved: u32,
     }
@@ -89,6 +89,6 @@
 ---
 
 ## 5. Doğrulama Kontrol Listesi
-- [ ] `test_thruster_allocation_matrix`: $F_x = 100\text{ N}, M_z = 0$ için iskele ve sancak motorlarına eşit itki dağıtılması.
+- [ ] `test_thruster_allocation_matrix`: $F_x = 100\text{ N}, M_z = 0$ için iskele ve sağ motorlara eşit itki dağıtılması.
 - [ ] `test_drift_compensation_crabbing`: Yanal akıntıda pruvanın akıntıya doğru açı alarak yanal hatanın sıfırlanması.
 - [ ] `test_cavitation_rate_limit`: Ani tork değişimlerinde motor ivmesinin sınırlandırılması.

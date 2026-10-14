@@ -1,0 +1,18 @@
+[package]
+name = "autocore-transform"
+version = "0.1.0"
+edition = "2021"
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "AutoCore SE(3) Transform Tree, Optical-to-Mechanical Projection and Geodesy Engine"
+
+[dependencies]
+autocore-base = { path = "../autocore-base" }
+serde = { workspace = true }
+thiserror = { workspace = true }
+bytemuck = { workspace = true }
+static_assertions = { workspace = true }
+
+[dev-dependencies]
+tokio = { workspace = true }

@@ -17,6 +17,11 @@ autocore-guidance = { path = "../autocore-guidance" }
 autocore-ground = { path = "../autocore-ground" }
 autocore-vision = { path = "../autocore-vision" }
 autocore-sdk = { path = "../autocore-sdk" }
+autocore-transform = { path = "../autocore-transform" }
+autocore-arbiter = { path = "../autocore-arbiter" }
+autocore-pointing = { path = "../autocore-pointing" }
+autocore-aerial = { path = "../autocore-aerial" }
+autocore-marine = { path = "../autocore-marine" }
 
 tokio = { workspace = true, features = ["full", "test-util", "time"] }
 geo = { workspace = true }

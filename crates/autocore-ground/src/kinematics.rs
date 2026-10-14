@@ -161,6 +161,63 @@ impl IdaThrusterMatrix {
     }
 }
 
+/// Mecanum / Omni 4-Tekerlekli Şasi Kinematiği
+#[derive(Debug, Clone)]
+pub struct MecanumKinematics {
+    pub wheelbase_m: f64,
+    pub track_width_m: f64,
+    pub wheel_radius_m: f64,
+}
+
+#[derive(Debug, Clone, Copy, PartialEq)]
+pub struct MecanumWheelSpeeds {
+    pub front_left_radps: f64,
+    pub front_right_radps: f64,
+    pub rear_left_radps: f64,
+    pub rear_right_radps: f64,
+}
+
+impl MecanumKinematics {
+    pub fn new(wheelbase_m: f64, track_width_m: f64, wheel_radius_m: f64) -> Self {
+        assert!(wheelbase_m > 0.0 && track_width_m > 0.0 && wheel_radius_m > 0.0);
+        Self {
+            wheelbase_m,
+            track_width_m,
+            wheel_radius_m,
+        }
+    }
+
+    /// Ters kinematik: [vx, vy, omega_z] -> 4 tekerlek açısal hızları
+    pub fn inverse(&self, vx: f64, vy: f64, omega_z: f64) -> MecanumWheelSpeeds {
+        let geom = (self.wheelbase_m + self.track_width_m) * 0.5;
+        let r = self.wheel_radius_m;
+
+        let front_left = (vx - vy - omega_z * geom) / r;
+        let front_right = (vx + vy + omega_z * geom) / r;
+        let rear_left = (vx + vy - omega_z * geom) / r;
+        let rear_right = (vx - vy + omega_z * geom) / r;
+
+        MecanumWheelSpeeds {
+            front_left_radps: front_left,
+            front_right_radps: front_right,
+            rear_left_radps: rear_left,
+            rear_right_radps: rear_right,
+        }
+    }
+
+    /// İleri kinematik: 4 tekerlek açısal hızından [vx, vy, omega_z]
+    pub fn forward(&self, wheels: &MecanumWheelSpeeds) -> (f64, f64, f64) {
+        let r = self.wheel_radius_m;
+        let geom = (self.wheelbase_m + self.track_width_m) * 0.5;
+
+        let vx = (wheels.front_left_radps + wheels.front_right_radps + wheels.rear_left_radps + wheels.rear_right_radps) * (r * 0.25);
+        let vy = (-wheels.front_left_radps + wheels.front_right_radps + wheels.rear_left_radps - wheels.rear_right_radps) * (r * 0.25);
+        let omega = (-wheels.front_left_radps + wheels.front_right_radps - wheels.rear_left_radps + wheels.rear_right_radps) * (r / (4.0 * geom));
+
+        (vx, vy, omega)
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -197,8 +254,25 @@ mod tests {
         assert_eq!(alloc1.left_n, 25.0);
         assert_eq!(alloc1.right_n, 25.0);
 
-        // Sağa dönüş torku (sağ motor daha az, sol motor daha çok)
+        // Sağa dönüş torku
         let alloc2 = ida.allocate(50.0, 10.0);
         assert!(alloc2.right_n > alloc2.left_n);
     }
+
+    #[test]
+    fn test_mecanum_roundtrip() {
+        let mec = MecanumKinematics::new(0.6, 0.5, 0.1);
+
+        let vx = 1.5;
+        let vy = -0.5; // Yanal kayma (strafe)
+        let omega = 0.8;
+
+        let wheels = mec.inverse(vx, vy, omega);
+        let (rec_vx, rec_vy, rec_omega) = mec.forward(&wheels);
+
+        assert!((rec_vx - vx).abs() < 1e-4);
+        assert!((rec_vy - vy).abs() < 1e-4);
+        assert!((rec_omega - omega).abs() < 1e-4);
+    }
 }
+
